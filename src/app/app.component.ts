@@ -8,33 +8,31 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'app works!';
+  decimals: ReadonlyArray<number> = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  romans: ReadonlyArray<string>  = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
 
   fromArabic(n) {
-    let r = '',
-    decimals = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1],
-    roman = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-    for (let i = 0; i < decimals.length; i++) {
-        while (n >= decimals[i]) {
-            r += roman[i];
-            n -= decimals[i];
+    let r = '';
+    for (let i = 0; i < this.decimals.length; i++) {
+        while (n >= this.decimals[i]) {
+            r += this.romans[i];
+            n -= this.decimals[i];
         }
     }
     return r;
   }
 
-fromRoman(str) {
-  let result = 0;
-  let decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
-  let roman = ['M', 'CM', 'D', 'CD', ' C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
-  for (let i = 0; i <= decimal.length; i++) {
-    while (str.indexOf(roman[i]) === 0) {
-      result += decimal[i];
-      str = str.replace(roman[i], '');
+  fromRoman(str) {
+    let result = 0;
+    for (let i = 0; i <= this.decimals.length; i++) {
+      while (str.indexOf(this.romans[i]) === 0) {
+        result += this.decimals[i];
+        str = str.replace(this.romans[i], '');
+      }
+    }
+    return result;
     }
   }
-  return result;
-  }
-}
 
 
 
