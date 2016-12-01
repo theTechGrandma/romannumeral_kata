@@ -26,6 +26,9 @@ export class AppComponent {
 
   fromRoman(str) {
     try {
+      if (this.canNeverBeRepeated(str))
+        { return; }
+
       let result = 0;
       for (let i = 0; i <= this.decimals.length; i++) {
         while (str.indexOf(this.romans[i]) === 0) {
@@ -35,6 +38,12 @@ export class AppComponent {
         return result;
       } catch (err) {
           console.log('Error: ', err.message); }
+    }
+
+    canNeverBeRepeated(str): boolean {
+      let patt = /^(?!.*(.).*\1)[vVlLdD]+$/;
+      let result = patt.test(str);
+      return result;
     }
 }
 

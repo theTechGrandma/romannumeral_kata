@@ -18,17 +18,30 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app works!'`, async(() => {
+  // Can Never Be Repeated (VLD)
+
+  it(`CanNeverBeRepeated - Only 1 of the symbol 'v''`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
+    expect(app.canNeverBeRepeated('v')).toEqual(true);
   }));
 
-  it('should render title in a h1 tag', async(() => {
+  it(`CanNeverBeRepeated - L`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    let app = fixture.debugElement.componentInstance;
+    expect(app.canNeverBeRepeated('LL')).toEqual(false);
+  }));
+
+  it(`CanNeverBeRepeated - d`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.canNeverBeRepeated('dd')).toEqual(false);
+  }));
+
+  it(`CanNeverBeRepeated - VLD is not included'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.canNeverBeRepeated('a')).toEqual(false);
   }));
 
   // Roman Numerals
