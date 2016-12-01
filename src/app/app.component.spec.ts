@@ -30,4 +30,10 @@ describe('AppComponent', () => {
     let compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
   }));
+
+  it(`should return roman numeral 'DCXLVIII'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.toArabic).toEqual('648');
+  }));
 });
