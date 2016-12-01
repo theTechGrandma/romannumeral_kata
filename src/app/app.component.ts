@@ -12,27 +12,31 @@ export class AppComponent {
   romans: ReadonlyArray<string>  = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
 
   fromArabic(n) {
-    let r = '';
-    for (let i = 0; i < this.decimals.length; i++) {
-        while (n >= this.decimals[i]) {
-            r += this.romans[i];
-            n -= this.decimals[i];
-        }
-    }
-    return r;
+    try {
+      let r = '';
+      for (let i = 0; i < this.decimals.length; i++) {
+          while (n >= this.decimals[i]) {
+              r += this.romans[i];
+              n -= this.decimals[i];
+          }}
+          return r;
+        } catch (err) {
+        console.log('Error: ', err.message); }
   }
 
   fromRoman(str) {
-    let result = 0;
-    for (let i = 0; i <= this.decimals.length; i++) {
-      while (str.indexOf(this.romans[i]) === 0) {
-        result += this.decimals[i];
-        str = str.replace(this.romans[i], '');
-      }
+    try {
+      let result = 0;
+      for (let i = 0; i <= this.decimals.length; i++) {
+        while (str.indexOf(this.romans[i]) === 0) {
+          result += this.decimals[i];
+          str = str.replace(this.romans[i], '');
+        }}
+        return result;
+      } catch (err) {
+          console.log('Error: ', err.message); }
     }
-    return result;
-    }
-  }
+}
 
 
 

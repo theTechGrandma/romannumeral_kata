@@ -31,15 +31,60 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('app works!');
   }));
 
+  // Roman Numerals
+
   it(`should return roman numeral 'DCXLVIII'`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
     expect(app.fromArabic(648)).toEqual('DCXLVIII');
   }));
 
-  it(`should return roman numeral '648'`, async(() => {
+  it(`should return roman numeral 'XLVII'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromArabic(47)).toEqual('XLVII');
+  }));
+
+  it(`should return roman numeral 'MMCCCXLV'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromArabic(2345)).toEqual('MMCCCXLV');
+  }));
+
+  it(`should return roman numeral 'MCMXCVIII'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromArabic(1998)).toEqual('MCMXCVIII');
+  }));
+
+  // Arabic
+
+  it(`should return arabic numeral '648'`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
     expect(app.fromRoman('DCXLVIII')).toEqual(648);
+  }));
+
+  it(`should return arabic numeral '3'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromRoman('III')).toEqual(3);
+  }));
+
+  it(`should return arabic numeral '1'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromRoman('I')).toEqual(1);
+  }));
+  it(`should return arabic numeral '1989'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromRoman('MCMLXXXIX')).toEqual(1989);
+  }));
+
+  it(`should return arabic numeral '1999'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromRoman('MCMLXXXXIX')).toEqual(1999);
   }));
 });
