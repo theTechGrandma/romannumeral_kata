@@ -34,6 +34,12 @@ describe('AppComponent', () => {
   it(`should return roman numeral 'DCXLVIII'`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
-    expect(app.toArabic).toEqual('648');
+    expect(app.fromArabic(648)).toEqual('DCXLVIII');
+  }));
+
+  it(`should return roman numeral '648'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.fromRoman('DCXLVIII')).toEqual(648);
   }));
 });
