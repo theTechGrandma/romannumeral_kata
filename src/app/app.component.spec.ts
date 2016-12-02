@@ -18,6 +18,26 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   }));
 
+  // Must be a valid character first
+
+  it(`MustBeValidCharacter - letter`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.mustBeValidCharacter('v')).toEqual(true);
+  }));
+
+  it(`MustBeValidCharacter - Only numbers or letters`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.mustBeValidCharacter('*')).toEqual(false);
+  }));
+
+  it(`MustBeValidCharacter - Number`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.mustBeValidCharacter(1999)).toEqual(true);
+  }));
+
   // Can Never Be Repeated (VLD)
 
   it(`CanNeverBeRepeated - Only 1 of the symbol 'v''`, async(() => {
@@ -42,6 +62,34 @@ describe('AppComponent', () => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
     expect(app.canNeverBeRepeated('a')).toEqual(false);
+  }));
+
+  // The symbols 'I', 'X', 'C', and 'M' can be repeated at most 3 times in a row.
+  it(`RepeatedNoMoreThanThreeTimes - X 3 of the same'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.repeatedNoMoreThanThreeTimes('XXX')).toEqual(true);
+  }));
+
+  // The symbols 'I', 'X', 'C', and 'M' can be repeated at most 3 times in a row.
+  it(`RepeatedNoMoreThanThreeTimes - X 3 of the same with an addition straggler'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.repeatedNoMoreThanThreeTimes('XXXCX')).toEqual(true);
+  }));
+
+  // The symbols 'I', 'X', 'C', and 'M' can be repeated at most 3 times in a row.
+  it(`RepeatedNoMoreThanThreeTimes - 4 of the same character'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.repeatedNoMoreThanThreeTimes('XXXX')).toEqual(false);
+  }));
+
+  // The symbols 'I', 'X', 'C', and 'M' can be repeated at most 3 times in a row.
+  it(`RepeatedNoMoreThanThreeTimes - 4 of the same with other character.'`, async(() => {
+    let fixture = TestBed.createComponent(AppComponent);
+    let app = fixture.debugElement.componentInstance;
+    expect(app.repeatedNoMoreThanThreeTimes('CCCCAA')).toEqual(false);
   }));
 
   // Roman Numerals
@@ -89,15 +137,10 @@ describe('AppComponent', () => {
     let app = fixture.debugElement.componentInstance;
     expect(app.fromRoman('I')).toEqual(1);
   }));
-  it(`should return arabic numeral '1989'`, async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
-    expect(app.fromRoman('MCMLXXXIX')).toEqual(1989);
-  }));
 
   it(`should return arabic numeral '1999'`, async(() => {
     let fixture = TestBed.createComponent(AppComponent);
     let app = fixture.debugElement.componentInstance;
-    expect(app.fromRoman('MCMLXXXXIX')).toEqual(1999);
+    expect(app.fromRoman('MCMLXXIX')).toEqual(1979);
   }));
 });

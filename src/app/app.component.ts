@@ -13,6 +13,10 @@ export class AppComponent {
 
   fromArabic(n) {
     try {
+      // // if character is not valid, return
+      if (!this.mustBeValidCharacter(n)) {
+        return; }
+
       let r = '';
       for (let i = 0; i < this.decimals.length; i++) {
           while (n >= this.decimals[i]) {
@@ -26,8 +30,20 @@ export class AppComponent {
 
   fromRoman(str) {
     try {
-      if (this.canNeverBeRepeated(str))
-        { return; }
+
+      // if character is not valid, return
+      if (!this.mustBeValidCharacter(str)) {
+        return; }
+
+      // if VLD is repeated, return
+      if (this.canNeverBeRepeated(str)) {
+        return; }
+
+      // if IXCM has been used more than 3 times, return
+      if (!this.repeatedNoMoreThanThreeTimes(str)) {
+        return; }
+
+      // else ..... let's get on that conversion train.
 
       let result = 0;
       for (let i = 0; i <= this.decimals.length; i++) {
@@ -40,8 +56,20 @@ export class AppComponent {
           console.log('Error: ', err.message); }
     }
 
-    canNeverBeRepeated(str): boolean {
+    canNeverBeRepeated(item): boolean {
       let patt = /^(?!.*(.).*\1)[vVlLdD]+$/;
+      let result = patt.test(item);
+      return result;
+    }
+
+    repeatedNoMoreThanThreeTimes(str): boolean {
+      let patt = /^(?!.*([iIxXcCmM])\1{3})/;
+      let result = patt.test(str);
+      return result;
+    }
+
+    mustBeValidCharacter(str): boolean {
+      let patt = /^\w+$/;
       let result = patt.test(str);
       return result;
     }
