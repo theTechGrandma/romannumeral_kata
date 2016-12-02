@@ -8,9 +8,9 @@ Uses the following technologies:
 - Bootstrap (styling)
 
 ##Installation
-Install NodeJS and Node Package Manager.
-Clone repo
-Navigate to the project folder and run npm install.
+- Install NodeJS and Node Package Manager.
+- Clone repo
+- Navigate to the project folder and run npm install.
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
@@ -25,9 +25,9 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Uses the TestBed mock Framework
 
 ## Blog 
-Blogger at www.theTechGrandma blogging about things I build including software. Twitter @theTechGrandma
+Blogger at www.theTechGrandma.com blogging about things I build including software. Twitter @theTechGrandma
 
 ## User Community
-Girls Who Code mentor
-Member of Girl Develop It
-Saline High School Robotics club mentor
+- Girls Who Code mentor
+- Member of Girl Develop It
+- Saline High School Robotics club mentor
